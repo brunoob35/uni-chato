@@ -1,4 +1,6 @@
-const ws = new WebSocket("ws://localhost:8080/ws");
+// const ws = new WebSocket("ws://localhost:8080/ws");
+const ws = new WebSocket("wss://uni-chato.onrender.com/ws");
+
 
 ws.onmessage = function (event) {
     const msg = JSON.parse(event.data);
