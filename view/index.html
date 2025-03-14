@@ -9,34 +9,15 @@
 <body>
 <img src="assets/unichato.svg" alt="Uni Chato" class="logo">
 <div class="container">
-
     <ul id="messages"></ul>
     <form id="form">
         <input id="username" type="text" placeholder="Nome" required>
-        <input id="message" type="text" placeholder="Mensagen" required>
+        <input id="message" type="text" placeholder="Mensagem" required>
         <button type="submit">Send</button>
     </form>
-    <script>
-        const ws = new WebSocket("ws://localhost:8080/ws");
-
-        ws.onmessage = function (event) {
-            const msg = JSON.parse(event.data);
-            const item = document.createElement("li");
-            item.textContent = msg.username + ": " + msg.message;
-            document.getElementById("messages").appendChild(item);
-
-            // Rola para o final automaticamente sempre que uma nova mensagem chega
-            messages.scrollTop = messages.scrollHeight;
-        };
-
-        document.getElementById("form").onsubmit = function (event) {
-            event.preventDefault();
-            const username = document.getElementById("username").value;
-            const message = document.getElementById("message").value;
-            ws.send(JSON.stringify({username, message}));
-            document.getElementById("message").value = '';
-        };
-    </script>
+    <!-- Contador de caracteres -->
+    <div id="char-count" style="font-size: 12px; color: #555;">0/350</div>
+    <script src="./scripts/scripts.js"></script>
 </div>
 </body>
 </html>
