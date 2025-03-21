@@ -13,6 +13,13 @@ var clients = make(map[*websocket.Conn]bool)
 var upgrader = websocket.Upgrader{
 	ReadBufferSize:  1024,
 	WriteBufferSize: 1024,
+	CheckOrigin: func(r *http.Request) bool {
+		allowedOrigins := map[string]bool{
+			"https://uni-chato.onrender.com": true,
+			"https://www.unichato.space":     true,
+		}
+		return allowedOrigins[r.Header.Get("Origin")]
+	},
 }
 
 func HandleConnections(w http.ResponseWriter, r *http.Request) {
