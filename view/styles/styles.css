@@ -89,11 +89,3 @@ button {
 button:hover {
     background-color: #9a87c3; /* Cor mais escura no hover */
 }
-/* Responsividade */
-@media (max-width: 768px) {
-    .container {
-        width: 90%;
-        height: auto;
-        padding: 15px;
-    }
-}
