@@ -89,3 +89,25 @@ button {
 button:hover {
     background-color: #9a87c3; /* Cor mais escura no hover */
 }
+@media (max-width: 768px) {
+    .container {
+        width: 90vw;
+        height: auto;
+        padding: 15px;
+    }
+    
+    form {
+        flex-direction: column;
+        width: 100%;
+    }
+    
+    input[type="text"], button {
+        width: 100%;
+    }
+    
+    .logo {
+        max-width: 100px;
+        padding: 10px;
+    }
+}
+
