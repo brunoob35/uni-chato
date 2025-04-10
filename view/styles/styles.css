@@ -1,16 +1,21 @@
+:root {
+    --padding-container: 20px;
+}
+
 html, body {
     height: 90vh;
     margin: 0;
     display: flex;
     flex-direction: column;
-    justify-content: center; /* Centraliza horizontalmente */
-    align-items: center; /* Centraliza verticalmente */
-    background-color: #ededed; /* Cor de fundo opcional */
+    justify-content: center;
+    align-items: center;
+    background-color: #ededed;
+    transition: background-color 0.3s ease;
 }
 
 .container {
     background: #ffffff;
-    padding: 20px;
+    padding: var(--padding-container);
     border-radius: 8px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     text-align: center;
@@ -22,72 +27,160 @@ html, body {
 }
 
 #messages {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
     list-style-type: none;
     margin: 0;
-    padding: 0;
+    padding: 10px;
     height: 200px;
     overflow-y: scroll;
-    flex-grow: 1; /* Faz com que a área de mensagens ocupe o espaço restante */
+    flex-grow: 1;
 }
+
 #messages li {
-    padding: 8px;
-    border-bottom: 1px solid #ddd;
+    margin: 5px 0;
+    border: none;
+    list-style: none;
+    background-color: #b39ddb;
+    color: white;
+    border-radius: 20px;
+    max-width: 70%;
+    align-self: flex-start;
+    padding: 10px 15px;
+    word-wrap: break-word;
+}
+
+#messages li.me {
+    background-color: #c8e6c9;
+    align-self: flex-end;
+    color: #333;
 }
 
 .logo {
     max-width: 120px;
     padding: 20px;
+    transition: all 0.3s ease;
 }
 
 form {
-    display: flex; /* Ativa o Flexbox */
-    flex-direction: row; /* Alinha os campos em linha */
-    justify-content: space-between; /* Espaço entre os campos */
-    gap: 10px; /* Espaço entre os campos */
-    width: 90%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+    width: 100%;
     padding-top: 10px;
+    flex-wrap: nowrap;
+    position: relative;
 }
 
 input[type="text"] {
-    background-color: #ededed; /* Cor de fundo do body (cinza claro) */
-    border: none; /* Remove a borda padrão */
-    padding: 10px; /* Espaçamento interno */
-    border-radius: 30px; /* Bordas arredondadas */
-    font-size: 16px; /* Tamanho da fonte */
-    box-sizing: border-box; /* Inclui o padding na largura total */
-}
-
-#username {
-    width: 20%; /* Define a largura do campo de username */
-}
-
-#message {
-    flex-grow: 1; /* O campo de mensagem ocupa o restante do espaço */
+    background-color: #ededed;
+    border: none;
+    padding: 12px 40px 12px 20px;
+    border-radius: 30px;
+    font-size: 16px;
+    box-sizing: border-box;
+    flex-grow: 1;
+    min-width: 0;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+    color: #333;
 }
 
 input[type="text"]:focus {
-    outline: none; /* Remove o contorno padrão */
-    background-color: #d1cfd1; /* Cor de fundo ao focar */
+    outline: none;
+    background-color: #d1cfd1;
+    box-shadow: 0 0 5px rgba(179, 157, 219, 0.7);
 }
 
 input[type="text"]::placeholder {
-    color: #aaa; /* Cor do texto do placeholder */
+    color: #aaa;
 }
 
 button {
-    background-color: #b39ddb; /* Cor roxo pastel */
-    color: white; /* Texto branco */
-    border: none; /* Remove a borda padrão */
-    padding: 10px 20px; /* Espaçamento interno */
-    border-radius: 30px; /* Bordas arredondadas */
-    cursor: pointer; /* Altera o cursor para indicar que é clicável */
-    font-size: 16px; /* Tamanho da fonte */
-    transition: background-color 0.3s ease; /* Efeito suave ao passar o mouse */
-    width: 12%; /* Faz o botão ocupar toda a largura do formulário */
+    background-color: #b39ddb;
+    color: white;
+    border: none;
+    padding: 12px 24px;
+    border-radius: 30px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+    flex-shrink: 0;
 }
 
 button:hover {
-    background-color: #9a87c3; /* Cor mais escura no hover */
+    background-color: #9a87c3;
+    box-shadow: 0 2px 8px rgba(154, 135, 195, 0.5);
+}
+
+.visually-hidden {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    margin: -1px;
+    padding: 0;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    border: 0;
+}
+
+/* 📱 mobile-s: até 390px */
+@media (max-width: 390px) {
+    .logo {
+        max-width: 80px;
+        padding: 10px 0;
+    }
+
+    .container {
+        width: 90vw;
+        height: 70vh;
+        padding: 10px;
+    }
+
+    #messages {
+        height: 50vh;
+    }
+
+    form {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    input[type="text"],
+    button {
+        width: 100%;
+    }
+
+    button {
+        margin-top: 10px;
+    }
+}
+
+/* 📲 phablet: 391px até 600px */
+@media (min-width: 391px) and (max-width: 600px) {
+    .logo {
+        max-width: 90px;
+    }
+
+    .container {
+        width: 85vw;
+        height: 65vh;
+        padding: 15px;
+    }
+
+    #messages {
+        height: 50vh;
+    }
+}
+
+/* 💻 desktop: 601px até 1024px */
+@media (min-width: 601px) and (max-width: 1024px) {
+    .container {
+        width: 75vw;
+        height: 65vh;
+    }
 }
 @media (max-width: 768px) {
     .container {
@@ -111,3 +204,10 @@ button:hover {
     }
 }
 
+/* 🖥️ widescreen: acima de 1025px */
+@media (min-width: 1025px) {
+    .container {
+        width: 60vw;
+        height: 65vh;
+    }
+}
