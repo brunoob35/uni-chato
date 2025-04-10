@@ -25,4 +25,3 @@ Front em template HTML com CSS.
 
     - View:
         Todo o template visual assim como seus assets, configurações css e código necessário
-
