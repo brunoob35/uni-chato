@@ -1,17 +1,22 @@
-// const ws = new WebSocket("ws://localhost:8080/ws");
-// const ws = new WebSocket("wss://uni-chato.onrender.com/ws");
+let username = "";
+
+while (!username || username.trim() === "") {
+    username = prompt("Qual seu nome?");
+}
+
 const ws = new WebSocket(
     location.hostname === "localhost"
         ? "ws://localhost:8080/ws"
         : "wss://uni-chato.onrender.com/ws"
 );
 
+
 ws.onmessage = function (event) {
     const msg = JSON.parse(event.data);
     const item = document.createElement("li");
     item.textContent = msg.username + ": " + msg.message;
 
-    if (msg.username === document.getElementById("username").value) {
+    if (msg.username === username) {
         item.classList.add("me");
     }
     const messages = document.getElementById("messages");
@@ -31,20 +36,18 @@ ws.onmessage = function (event) {
 
 document.getElementById("form").onsubmit = function (event) {
     event.preventDefault();
-    const username = document.getElementById("username").value;
     const message = document.getElementById("message").value;
 
-    // Verifica se a mensagem excede 350 caracteres
     if (message.length > 350) {
         alert("A mensagem não pode exceder 350 caracteres.");
-        return; // Impede o envio da mensagem
+        return;
     }
 
-    // Envia a mensagem se estiver dentro do limite
     ws.send(JSON.stringify({ username, message }));
-    document.getElementById("message").value = ''; // Limpa o campo de mensagem
-    updateCharCount(); // Atualiza o contador após enviar a mensagem
+    document.getElementById("message").value = '';
+    updateCharCount();
 };
+
 
 // Atualiza o contador de caracteres
 const messageInput = document.getElementById("message");
