@@ -91,4 +91,4 @@ Acesse: `http://localhost:8080`
 
 ---
 
-Made with 💻 + by [Bruno Schmaiske Quoos]
+Made by [Bruno Schmaiske Quoos]
