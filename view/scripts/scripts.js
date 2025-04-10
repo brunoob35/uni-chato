@@ -10,6 +10,10 @@ ws.onmessage = function (event) {
     const msg = JSON.parse(event.data);
     const item = document.createElement("li");
     item.textContent = msg.username + ": " + msg.message;
+
+    if (msg.username === document.getElementById("username").value) {
+        item.classList.add("me");
+    }
     const messages = document.getElementById("messages");
 
     // Adiciona a nova mensagem ao topo da lista

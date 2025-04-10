@@ -22,16 +22,33 @@ html, body {
 }
 
 #messages {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start; /* mensagens alinhadas à esquerda */
     list-style-type: none;
     margin: 0;
-    padding: 0;
+    padding: 10px;
     height: 200px;
     overflow-y: scroll;
-    flex-grow: 1; /* Faz com que a área de mensagens ocupe o espaço restante */
+    flex-grow: 1;
 }
 #messages li {
     padding: 8px;
-    border-bottom: 1px solid #ddd;
+    margin: 5px 0;
+    border: none; /* remove a linha */
+    list-style: none;
+    background-color: #b39ddb; /* roxo pastel igual ao botão */
+    color: white;
+    border-radius: 20px;
+    max-width: 70%;
+    align-self: flex-start; /* para alinhar as mensagens à esquerda por padrão */
+    padding: 10px 15px;
+    word-wrap: break-word;
+}
+#messages li.me {
+    background-color: #c8e6c9; /* verde pastel clarinho */
+    align-self: flex-end;      /* alinha à direita */
+    color: #333;               /* texto escuro para contraste */
 }
 
 .logo {
