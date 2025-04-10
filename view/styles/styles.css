@@ -6,6 +6,7 @@ html, body {
     flex-direction: column;
     align-items: center;
     background-color: #ededed;
+    font-family: 'Inter', sans-serif;
 }
 
 /* -------------------- Container do chat -------------------- */
