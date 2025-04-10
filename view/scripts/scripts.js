@@ -10,11 +10,11 @@ const ws = new WebSocket(
         : "wss://uni-chato.onrender.com/ws"
 );
 
-
 ws.onmessage = function (event) {
     const msg = JSON.parse(event.data);
     const item = document.createElement("li");
-    item.textContent = msg.username + ": " + msg.message;
+    const timestamp = formatTimestamp(msg.timestamp);
+    item.innerHTML = `<span class="timestamp">${formatTimestamp(msg.timestamp)}</span> - <strong>${msg.username}:</strong><br>${msg.message}`;
 
     if (msg.username === username) {
         item.classList.add("me");
@@ -34,6 +34,16 @@ ws.onmessage = function (event) {
     messages.scrollTop = messages.scrollHeight;
 };
 
+// Formata a data/hora que aparece nas mensagens
+function formatTimestamp(ts) {
+    const date = new Date(ts);
+    const pad = (n) => n.toString().padStart(2, '0');
+    const hours = pad(date.getHours());
+    const minutes = pad(date.getMinutes());
+    return `${hours}:${minutes}`;
+}
+
+// Envio das mensagens junto da contagem de caracteres
 document.getElementById("form").onsubmit = function (event) {
     event.preventDefault();
     const message = document.getElementById("message").value;
@@ -43,11 +53,13 @@ document.getElementById("form").onsubmit = function (event) {
         return;
     }
 
-    ws.send(JSON.stringify({ username, message }));
+    const timestamp = Date.now(); // Aqui garante que será o exato momento do envio
+
+    ws.send(JSON.stringify({ username, message, timestamp }));
+
     document.getElementById("message").value = '';
     updateCharCount();
 };
-
 
 // Atualiza o contador de caracteres
 const messageInput = document.getElementById("message");
