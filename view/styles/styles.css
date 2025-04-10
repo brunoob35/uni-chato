@@ -33,7 +33,6 @@ html, body {
     flex-grow: 1;
 }
 #messages li {
-    padding: 8px;
     margin: 5px 0;
     border: none; /* remove a linha */
     list-style: none;
