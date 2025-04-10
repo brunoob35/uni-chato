@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Anuncie no UniChato</title>
+  <link rel="stylesheet" href="./styles/styles.css">
+  <style>
+    .ad-page {
+      max-width: 700px;
+      margin: 20px auto;
+      text-align: center;
+      background: #fff;
+      padding: 30px;
+      border-radius: 12px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.05);
+    }
+
+    .ad-page h1 {
+      margin-bottom: 20px;
+      color: #333;
+    }
+
+    .ad-page p {
+      font-size: 16px;
+      color: #555;
+      margin-bottom: 20px;
+    }
+
+    .whatsapp-link {
+      display: inline-block;
+      padding: 10px 20px;
+      background-color: #25D366;
+      color: white;
+      text-decoration: none;
+      border-radius: 30px;
+      font-weight: bold;
+      transition: background-color 0.3s ease;
+    }
+
+    .whatsapp-link:hover {
+      background-color: #1da955;
+    }
+  </style>
+</head>
+<body>
+
+<!-- Logo com link de volta pra home -->
+<a href="index.html">
+  <img src="assets/unichato.svg" alt="Uni Chato" class="logo">
+</a>
+
+<!-- Conteúdo principal -->
+<div class="ad-page">
+  <h1>Anuncie no UniChato 🎯</h1>
+  <p>O UniChato é parte do dia a dia de centenas de alunos! 🚀</p>
+  <p>Se você está organizando eventos, palestras, ações ou deseja divulgar serviços e produtos para o público universitário, aqui é o lugar certo.</p>
+  <p>Seu anúncio aparece diretamente no ambiente onde os estudantes conversam, compartilham ideias e se organizam academicamente.</p>
+
+  <a class="whatsapp-link" href="https://wa.me/5543996630496" target="_blank">
+    📲 Fale conosco pelo WhatsApp
+  </a>
+</div>
+
+<!-- Rodapé compartilhado -->
+<div id="footer-placeholder"></div>
+<script>
+  fetch("footer.html")
+    .then(response => response.text())
+    .then(data => {
+      document.getElementById("footer-placeholder").innerHTML = data;
+    });
+</script>
+
+</body>
+</html>

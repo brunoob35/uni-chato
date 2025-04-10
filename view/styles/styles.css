@@ -1,31 +1,37 @@
-:root {
-    --padding-container: 20px;
-}
-
+/* -------------------- Layout base -------------------- */
 html, body {
-    height: 90vh;
+    height: 100vh;
     margin: 0;
     display: flex;
     flex-direction: column;
-    justify-content: center;
     align-items: center;
     background-color: #ededed;
-    transition: background-color 0.3s ease;
 }
 
+/* -------------------- Container do chat -------------------- */
 .container {
+    flex: 1;
+    width: 90vw;
+    max-width: 1000px;
+    padding: 20px;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
     background: #ffffff;
-    padding: var(--padding-container);
     border-radius: 8px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    text-align: center;
-    height: 60vh;
-    width: 70vw;
-    display: flex;
-    flex-direction: column;  /* Organiza os filhos em coluna */
-    justify-content: space-between; /* Garante que o form fique final */
 }
 
+/* -------------------- Logo -------------------- */
+.logo {
+    max-width: 120px;
+    padding: 20px;
+    margin-top: 20px; /* espaço entre topo da página e logo */
+    transition: all 0.3s ease;
+}
+
+/* -------------------- Área de mensagens -------------------- */
 #messages {
     display: flex;
     flex-direction: column;
@@ -34,8 +40,24 @@ html, body {
     margin: 0;
     padding: 10px;
     height: 200px;
-    overflow-y: scroll;
+    overflow-y: auto;
     flex-grow: 1;
+    scrollbar-width: thin;
+    scrollbar-color: #ccc transparent;
+}
+
+#messages::-webkit-scrollbar {
+    width: 8px;
+}
+#messages::-webkit-scrollbar-track {
+    background: transparent;
+}
+#messages::-webkit-scrollbar-thumb {
+    background-color: #ccc;
+    border-radius: 4px;
+}
+#messages::-webkit-scrollbar-thumb:hover {
+    background-color: #aaa;
 }
 
 #messages li {
@@ -50,99 +72,128 @@ html, body {
     padding: 10px 15px;
     word-wrap: break-word;
 }
-
 #messages li.me {
     background-color: #c8e6c9;
     align-self: flex-end;
     color: #333;
 }
 
-.logo {
-    max-width: 120px;
-    padding: 20px;
-    transition: all 0.3s ease;
+#messages li strong {
+    font-weight: bold;
 }
 
+.timestamp {
+    font-size: 0.75em;
+    color: #666;
+}
+
+/* -------------------- Formulário -------------------- */
 form {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    align-items: center;
     gap: 10px;
     width: 100%;
     padding-top: 10px;
-    flex-wrap: nowrap;
-    position: relative;
+    flex-wrap: wrap;
 }
 
 input[type="text"] {
     background-color: #ededed;
     border: none;
-    padding: 12px 40px 12px 20px;
+    padding: 10px;
     border-radius: 30px;
     font-size: 16px;
     box-sizing: border-box;
-    flex-grow: 1;
+    flex: 1;
     min-width: 0;
-    transition: background-color 0.3s ease, box-shadow 0.3s ease;
-    color: #333;
 }
 
 input[type="text"]:focus {
     outline: none;
     background-color: #d1cfd1;
-    box-shadow: 0 0 5px rgba(179, 157, 219, 0.7);
 }
-
 input[type="text"]::placeholder {
     color: #aaa;
+}
+
+#message {
+    flex-grow: 1;
 }
 
 button {
     background-color: #b39ddb;
     color: white;
     border: none;
-    padding: 12px 24px;
+    padding: 10px 20px;
     border-radius: 30px;
     cursor: pointer;
     font-size: 16px;
-    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+    transition: background-color 0.3s ease;
     flex-shrink: 0;
 }
-
 button:hover {
     background-color: #9a87c3;
-    box-shadow: 0 2px 8px rgba(154, 135, 195, 0.5);
 }
 
-.visually-hidden {
-    position: absolute;
-    width: 1px;
-    height: 1px;
-    margin: -1px;
-    padding: 0;
-    overflow: hidden;
-    clip: rect(0, 0, 0, 0);
-    border: 0;
+/* -------------------- Rodapé -------------------- */
+.ad-footer {
+    padding: 8px 0;
+    margin-top: 10px;
+    width: 100%;
+    text-align: center;
 }
 
-/* 📱 mobile-s: até 390px */
-@media (max-width: 390px) {
+.ad-footer img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 8px;
+    transition: transform 0.3s ease;
+}
+.ad-footer img:hover {
+    transform: scale(1.01);
+}
+
+.ad-contact {
+    text-align: center;
+    font-size: 11px;
+    margin-top: 5px;
+}
+
+.ad-contact a {
+    color: #888;
+    text-decoration: none;
+}
+.ad-contact a:hover {
+    text-decoration: underline;
+    color: #666;
+}
+
+.site-footer {
+    font-size: 10px;
+    color: #aaa;
+    text-align: center;
+    margin: 4px 0 6px;
+}
+
+/* -------------------- Responsividade -------------------- */
+@media (max-width: 600px) {
     .logo {
         max-width: 80px;
         padding: 10px 0;
     }
 
     .container {
-        width: 90vw;
-        height: 70vh;
+        height: auto;
         padding: 10px;
     }
 
     #messages {
         height: 50vh;
     }
+}
 
+@media (max-width: 390px) {
     form {
         flex-direction: column;
         align-items: stretch;
@@ -155,59 +206,5 @@ button:hover {
 
     button {
         margin-top: 10px;
-    }
-}
-
-/* 📲 phablet: 391px até 600px */
-@media (min-width: 391px) and (max-width: 600px) {
-    .logo {
-        max-width: 90px;
-    }
-
-    .container {
-        width: 85vw;
-        height: 65vh;
-        padding: 15px;
-    }
-
-    #messages {
-        height: 50vh;
-    }
-}
-
-/* 💻 desktop: 601px até 1024px */
-@media (min-width: 601px) and (max-width: 1024px) {
-    .container {
-        width: 75vw;
-        height: 65vh;
-    }
-}
-@media (max-width: 768px) {
-    .container {
-        width: 90vw;
-        height: auto;
-        padding: 15px;
-    }
-    
-    form {
-        flex-direction: column;
-        width: 100%;
-    }
-    
-    input[type="text"], button {
-        width: 100%;
-    }
-    
-    .logo {
-        max-width: 100px;
-        padding: 10px;
-    }
-}
-
-/* 🖥️ widescreen: acima de 1025px */
-@media (min-width: 1025px) {
-    .container {
-        width: 60vw;
-        height: 65vh;
     }
 }
