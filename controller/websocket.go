@@ -32,6 +32,8 @@ func HandleConnections(w http.ResponseWriter, r *http.Request) {
 	defer ws.Close()
 	clients[ws] = true
 
+	log.Printf("Nova conexão de %s", r.RemoteAddr)
+
 	// Envia o histórico de mensagens assim que o cliente se conecta
 	for _, msg := range history {
 		ws.WriteJSON(msg)
